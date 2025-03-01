@@ -47,7 +47,9 @@ function submitHandler(event) {
     window.alert('Fill please all fields!');
     return;
   }
-  console.log(formData);
+  const data_for_submit = { ...formData };
+  console.log(data_for_submit);
+
   localStorage.removeItem('feedback-form-state');
   form_element.reset();
   Object.keys(formData).forEach(key => (formData[key] = ''));
