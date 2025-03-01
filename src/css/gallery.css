@@ -10,10 +10,6 @@
   gap: 24px;
 }
 
-img:hover {
-  cursor: url('../icons/bxs_hand-down.svg') 22 22, pointer;
-}
-
 .gallery-image {
   width: 360px;
   height: 200px;
