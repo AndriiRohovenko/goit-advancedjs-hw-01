@@ -1,3 +1,6 @@
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
 const images = [
   {
     preview:
@@ -70,7 +73,7 @@ const galleryMarkup = images
   .map(
     img => `
     <li class="gallery-item">
-  <a class="gallery-link" href="${img.original}" data-lightbox="gallery">
+  <a class="gallery-link" href="${img.original}">
     <img
       class="gallery-image"
       src="${img.preview}"
@@ -85,29 +88,8 @@ const galleryMarkup = images
 
 gallery.innerHTML = galleryMarkup;
 
-gallery.addEventListener('click', show_modal_handler);
-
-function show_modal_handler(event) {
-  event.preventDefault();
-  if (event.target.nodeName !== 'IMG') {
-    return;
-  }
-  const instance = basicLightbox.create(`
-      <div class="modal">
-
-      <a class="gallery-link" href="${event.target.dataset.source}">
-      <img
-        class="modal-image"
-        src="${event.target.dataset.source}"
-        alt="${event.target.alt}"
-      />
-    </a>
-      </div>
-  `);
-  instance.show();
-
-  const modal = document.querySelector('.modal');
-  modal.addEventListener('click', event => {
-    event.preventDefault();
-  });
-}
+const gallery_config = {
+  captionsData: 'alt',
+  captionDelay: 250,
+};
+new SimpleLightbox('.gallery-link', gallery_config);
